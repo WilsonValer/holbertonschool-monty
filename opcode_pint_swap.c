@@ -13,7 +13,7 @@ void _pint(stack_t **stack, unsigned int line_number)
         runner = *stack;
         if (runner == NULL)
         {
-                printf("L%d: can't pint, stack empty\n", line_number);
+                fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
                 error_exit(stack);
         }
         printf("%d\n", runner->n);
@@ -32,7 +32,7 @@ void _swap(stack_t **stack, unsigned int line_number)
         runner = *stack;
         if (runner == NULL || runner->next == NULL)
         {
-                printf("L%d: can't swap, stack too short\n", line_number);
+                fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
                 error_exit(stack);
         }
         tmp = runner->n;
@@ -48,7 +48,7 @@ void _pop(stack_t **stack, unsigned int line_number)
 {
         if (*stack == NULL)
         {
-                printf("L%d: can't pop an empty stack\n", line_number);
+                fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
                 error_exit(stack);
         }
         delete_dnodeint_at_index(stack, 0);
