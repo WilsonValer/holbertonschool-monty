@@ -14,12 +14,11 @@ int main(int argc, char **argv)
 		fprintf(stderr, "USAGE: monty file\n");
 		error_exit(&stack);
 	}
-		read_file(argv[1], &stack);
-		free_dlistint(stack);
-		return (0);
+	read_file(argv[1], &stack);
+	free_dlistint(stack);
+	return (0);
 }
 
-int sq_flag = 0;
 /**
  * read_file - reads a bytecode file and runs commands
  * @filename: pathname to file
@@ -59,10 +58,10 @@ void read_file(char *filename, stack_t **stack)
 		s(stack, line_count);
 		line_count++;
 	}
-	free(buffer);
 	check = fclose(file);
 	if (check == -1)
 		exit(-1);
+	free(buffer);
 }
 /**
  * get_op_func -  checks opcode and returns the correct function

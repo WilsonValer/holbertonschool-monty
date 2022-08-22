@@ -7,27 +7,27 @@
 */
 stack_t *add_dnodeint(stack_t **head, const int n)
 {
-		stack_t *new;
+	stack_t *new;
 
-		new = malloc(sizeof(stack_t));
-		if (new == NULL)
-			return (NULL);
+	new = malloc(sizeof(stack_t));
+	if (new == NULL)
+		return (NULL);
 
-		if (*head == NULL)
-		{
-			new->n = n;
-			new->next = NULL;
-			new->prev = NULL;
-			*head = new;
-			return (*head);
-		}
-
-		(*head)->prev = new;
+	if (*head == NULL)
+	{
 		new->n = n;
-		new->next = *head;
+		new->next = NULL;
 		new->prev = NULL;
 		*head = new;
 		return (*head);
+	}
+
+	(*head)->prev = new;
+	new->n = n;
+	new->next = *head;
+	new->prev = NULL;
+	*head = new;
+	return (*head);
 }
 /**
  * delete_dnodeint_at_index - delete node a specific spot
@@ -46,28 +46,28 @@ int delete_dnodeint_at_index(stack_t **head, unsigned int index)
 
 	tmp = *head;
 
-		if (index == 0)
-		{
-			*head = tmp->next;
-			if (tmp->next != NULL)
-				tmp->next->prev = NULL;
-			free(tmp);
-			return (1);
-		}
-		i = 0;
-		while (i < (index - 1))
-		{
-			if (tmp == NULL)
-				return (-1);
-			tmp = tmp->next;
-			i++;
-		}
-		tmp2 = (tmp->next)->next;
-		if (tmp->next->next != NULL)
-			tmp->next->next->prev = tmp;
-		free(tmp->next);
-		tmp->next = tmp2;
+	if (index == 0)
+	{
+		*head = tmp->next;
+		if (tmp->next != NULL)
+			tmp->next->prev = NULL;
+		free(tmp);
 		return (1);
+	}
+	i = 0;
+	while (i < (index - 1))
+	{
+		if (tmp == NULL)
+			return (-1);
+		tmp = tmp->next;
+		i++;
+	}
+	tmp2 = (tmp->next)->next;
+	if (tmp->next->next != NULL)
+		tmp->next->next->prev = tmp;
+	free(tmp->next);
+	tmp->next = tmp2;
+	return (1);
 }
 /**
  * add_dnodeint_end - add node to end of list
@@ -81,27 +81,27 @@ stack_t *add_dnodeint_end(stack_t **head, const int n)
 	stack_t *new_node;
 
 	new_node = malloc(sizeof(stack_t));
-		if (new_node == NULL)
-			return (NULL);
-		new_node->n = n;
+	if (new_node == NULL)
+		return (NULL);
+	new_node->n = n;
 
-		if (*head == NULL)
-		{
-			new_node->next = NULL;
-			new_node->prev = NULL;
-			*head = new_node;
-			return (new_node);
-		}
-
-		while (tmp->next != NULL)
-		{
-			tmp = tmp->next;
-		}
-
-		tmp->next = new_node;
-		new_node->prev = tmp;
+	if (*head == NULL)
+	{
 		new_node->next = NULL;
+		new_node->prev = NULL;
+		*head = new_node;
 		return (new_node);
+	}
+
+	while (tmp->next != NULL)
+	{
+		tmp = tmp->next;
+	}
+
+	tmp->next = new_node;
+	new_node->prev = tmp;
+	new_node->next = NULL;
+	return (new_node);
 }
 /**
  * free_dlistint - free a list
@@ -112,10 +112,10 @@ void free_dlistint(stack_t *head)
 {
 	stack_t *tmp;
 
-		while (head != NULL)
-		{
-			tmp = head->next;
-			free(head);
-			head = tmp;
-		}
+	while (head != NULL)
+	{
+		tmp = head->next;
+		free(head);
+		head = tmp;
+	}
 }

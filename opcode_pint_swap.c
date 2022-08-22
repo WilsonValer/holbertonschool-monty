@@ -8,15 +8,15 @@
  */
 void _pint(stack_t **stack, unsigned int line_number)
 {
-        stack_t *runner;
+	stack_t *runner;
 
-        runner = *stack;
-        if (runner == NULL)
-        {
-                fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-                error_exit(stack);
-        }
-        printf("%d\n", runner->n);
+	runner = *stack;
+	if (runner == NULL)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		error_exit(stack);
+	}
+	printf("%d\n", runner->n);
 }
 /**
  * _swap - swap top of stack and second top of stack
@@ -26,18 +26,19 @@ void _pint(stack_t **stack, unsigned int line_number)
  */
 void _swap(stack_t **stack, unsigned int line_number)
 {
-        stack_t *runner;
-        int tmp;
+	stack_t *runner;
+	int tmp;
 
-        runner = *stack;
-        if (runner == NULL || runner->next == NULL)
-        {
-                fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
-                error_exit(stack);
-        }
-        tmp = runner->n;
-        runner->n = runner->next->n;
-        runner->next->n = tmp;
+	runner = *stack;
+	if (runner == NULL || runner->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		free_stk(stack, line_number);
+		error_exit(stack);
+	}
+	tmp = runner->n;
+	runner->n = runner->next->n;
+	runner->next->n = tmp;
 }
 /**
  * _pop - delete item at top of stack
@@ -46,10 +47,10 @@ void _swap(stack_t **stack, unsigned int line_number)
  */
 void _pop(stack_t **stack, unsigned int line_number)
 {
-        if (*stack == NULL)
-        {
-                fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-                error_exit(stack);
-        }
-        delete_dnodeint_at_index(stack, 0);
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		error_exit(stack);
+	}
+		delete_dnodeint_at_index(stack, 0);
 }

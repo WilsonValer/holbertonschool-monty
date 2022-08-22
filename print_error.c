@@ -6,9 +6,9 @@
  */
 void error_exit(stack_t **stack)
 {
-        if (*stack)
-                free_dlistint(*stack);
-        exit(EXIT_FAILURE);
+	if (*stack)
+		free_dlistint(*stack);
+	exit(EXIT_FAILURE);
 }
 
 /**
@@ -19,23 +19,23 @@ void error_exit(stack_t **stack)
  */
 int isnumber(char *str)
 {
-        unsigned int i;
+	unsigned int i;
 
-        if (str == NULL)
-                return (0);
-        i = 0;
-        while (str[i])
-        {
-                if (str[0] == '-')
-                {
-                        i++;
-                        continue;
-                }
-                if (!isdigit(str[i]))
-                        return (0);
-                i++;
-        }
-        return (1);
+	if (str == NULL)
+		return (0);
+	i = 0;
+	while (str[i])
+	{
+		if (str[0] == '-')
+		{
+			i++;
+			continue;
+		}
+		if (!isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 /**
@@ -46,29 +46,29 @@ int isnumber(char *str)
  */
 void _rotl(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 {
-        stack_t *runner;
-        int temp1, temp2;
+	stack_t *runner;
+	int temp1, temp2;
 
-        if (*stack == NULL)
-                return;
-        runner = *stack;
-        while (runner->next)
-                runner = runner->next;
-        while (runner)
-        {
-                if (!runner->next)
-                {
-                        temp1 = runner->n;
-                        runner->n = (*stack)->n;
-                }
-                else
-                {
-                        temp2 = runner->n;
-                        runner->n = temp1;
-                        temp1 = temp2;
-                }
-                runner = runner->prev;
-        }
+	if (*stack == NULL)
+		return;
+	runner = *stack;
+	while (runner->next)
+		runner = runner->next;
+	while (runner)
+	{
+		if (!runner->next)
+		{
+			temp1 = runner->n;
+			runner->n = (*stack)->n;
+		}
+		else
+		{
+			temp2 = runner->n;
+			runner->n = temp1;
+			temp1 = temp2;
+		}
+			runner = runner->prev;
+	}
 }
 /**
  * _rotr - rotates the list right
@@ -78,30 +78,29 @@ void _rotl(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
  */
 void _rotr(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 {
-        stack_t *runner1, *runner2;
-        int temp1, temp2;
+	stack_t *runner1, *runner2;
+	int temp1, temp2;
 
-        if (*stack == NULL)
-                return;
+	if (*stack == NULL)
+		return;
 
-        runner1 = *stack;
-        runner2 = *stack;
-        while (runner1->next)
-                runner1 = runner1->next;
-        while (runner2)
-        {
-                if (runner2->prev == NULL)
-                {
-                        temp1 = runner2->n;
-                        runner2->n = runner1->n;
-                }
-                else
-                {
-                        temp2 = runner2->n;
-                        runner2->n = temp1;
-                        temp1 = temp2;
-                }
-                runner2 = runner2->next;
-
-        }
+	runner1 = *stack;
+	runner2 = *stack;
+	while (runner1->next)
+		runner1 = runner1->next;
+	while (runner2)
+	{
+		if (runner2->prev == NULL)
+		{
+			temp1 = runner2->n;
+			runner2->n = runner1->n;
+		}
+		else
+		{
+			temp2 = runner2->n;
+			runner2->n = temp1;
+			temp1 = temp2;
+		}
+		runner2 = runner2->next;
+	}
 }

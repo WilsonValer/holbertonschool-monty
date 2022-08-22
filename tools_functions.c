@@ -72,7 +72,12 @@ void _pstr(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 void _stack(__attribute__ ((unused)) stack_t **stack,
 	__attribute__ ((unused)) unsigned int line_number)
 {
-	sq_flag = 0;
+	int  sq_flag = 1;
+
+	if (sq_flag)
+	{
+		sq_flag = 0;
+	}
 }
 /**
  * _queue - sets sq_flag to queue
@@ -82,5 +87,10 @@ void _stack(__attribute__ ((unused)) stack_t **stack,
 void _queue(__attribute__ ((unused))stack_t **stack,
 	__attribute__ ((unused))unsigned int line_number)
 {
-	sq_flag = 1;
+	int  sq_flag = 1;
+
+	if (sq_flag)
+	{
+		sq_flag = 1;
+	}
 }

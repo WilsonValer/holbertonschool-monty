@@ -7,7 +7,8 @@
  */
 void _push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new;
+	int sq_flag = 0;
+	stack_t *new = NULL;
 	char *arg;
 	int push_arg;
 
@@ -16,8 +17,10 @@ void _push(stack_t **stack, unsigned int line_number)
 	if (!new)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
+		free_stk(stack, line_number);
 		error_exit(stack);
 	}
+	free(new);
 
 	arg = strtok(NULL, "\n ");
 	if (isnumber(arg) == 1 && arg != NULL)
@@ -56,4 +59,19 @@ void _pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 		printf("%d\n", runner->n);
 		runner = runner->next;
 	}
+}
+
+/**
+ * free_stk - frees the stack
+ * @stack: the stack.
+ * @line_number: the line number.
+ *
+ * Return: void.
+ */
+void free_stk(stack_t **stack, unsigned int line_number)
+{
+	if (stack == NULL)
+		return;
+	while (*stack != NULL)
+		_pop(stack, line_number);
 }
